@@ -1,6 +1,6 @@
 {
   "name": "generator-cordovacli",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A generator for Apache Cordova CLI 3.x coming soon...",
   "keywords": [
     "yeoman-generator"
