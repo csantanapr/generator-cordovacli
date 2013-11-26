@@ -53,7 +53,12 @@ CordovacliGenerator.prototype.askFor = function askFor() {
         }
 
         this.platforms = '[\'' + this.platforms.toString().split(',').join('\', \'') + '\']';
-        this.plugins = '[\'' + this.plugins.toString().split(',').join('\', \'') + '\']';
+        if (this.plugins && this.plugins.length > 0) {
+            this.plugins = '[\'' + this.plugins.toString().split(',').join('\', \'') + '\']';
+        } else {
+            this.plugins = '[]';
+        }
+
 
 
         cb();
