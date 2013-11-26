@@ -34,7 +34,7 @@ module.exports = function (grunt) {
             },
             cordova: {
                 options: {
-                    command: ['create', 'platform', 'plugin', 'build'],
+                    command: ['create', 'platform', 'plugin'],
                     platforms: <%= platforms %>,
                     plugins:  <%= plugins %>,
                     id: 'io.cordova.hellocordova',

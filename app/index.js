@@ -4,6 +4,7 @@ var util = require('util');
 var path = require('path');
 var yeoman = require('yeoman-generator');
 var os     = require('os');
+var cprocess     = require('child_process');
 
 
 var CordovacliGenerator,
@@ -16,7 +17,27 @@ CordovacliGenerator = module.exports = function CordovacliGenerator(args, option
     yeoman.generators.Base.apply(this, arguments);
 
     this.on('end', function () {
-        this.installDependencies({ skipInstall: options['skip-install'] });
+
+        this.installDependencies({
+            skipInstall: options['skip-install'],
+            callback: function () {
+                var child;
+                console.log('Running Grunt');
+                child = cprocess.spawn('grunt', ['cordovacli:cordova']);
+
+                child.stdout.setEncoding('utf8');
+                child.stdout.on('data', function (data) {
+                    console.log(data);
+                });
+
+                child.stderr.setEncoding('utf8');
+                child.stderr.on('data', function (data) {
+                    console.error(data);
+                });
+            }
+        });
+
+
     });
 
     this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
@@ -64,7 +85,7 @@ getPlatformChoices = function () {
     choices.push({
         name: 'Blackberry 10',
         value: 'blackberry10',
-        checked: true
+        checked: false
     });
     if (os.platform() === 'win32') {
         choices.push({
@@ -184,8 +205,8 @@ promptName = function (cb) {
     var prompts;
     prompts = [{
         'name': 'appName',
-        'message': 'What do you want to name your App-foo?',
-        'default': 'dude'
+        'message': 'What do you want to name your App?',
+        'default': 'HelloCordova'
     }];
     this.prompt(prompts, function (props) {
         for (var key in props) {
@@ -201,7 +222,7 @@ promptPlatforms = function (cb) {
     prompts = [{
         type: 'checkbox',
         name: 'platforms',
-        message: 'What platforms would you like to add support for-foo?',
+        message: 'What platforms would you like to add support for?',
         choices: getPlatformChoices()
     }];
     this.prompt(prompts, function (props) {
@@ -223,7 +244,7 @@ promptPlugins = function (cb) {
     prompts = [{
         type: 'checkbox',
         name: 'plugins',
-        message: 'What plugins would you like to add support for-foo?',
+        message: 'What plugins would you like to add support for?',
         choices: getPluginsChoices()
     }];
     this.prompt(prompts, function (props) {
