@@ -8,7 +8,10 @@ var os     = require('os');
 
 var CordovacliGenerator,
     getPlatformChoices,
-    getPluginsChoices;
+    getPluginsChoices,
+    promptName,
+    promptPlatforms,
+    promptPlugins;
 CordovacliGenerator = module.exports = function CordovacliGenerator(args, options) {
     yeoman.generators.Base.apply(this, arguments);
 
@@ -22,47 +25,14 @@ CordovacliGenerator = module.exports = function CordovacliGenerator(args, option
 util.inherits(CordovacliGenerator, yeoman.generators.Base);
 
 CordovacliGenerator.prototype.askFor = function askFor() {
-    var cb,
-        prompts;
-    cb = this.async();
+    var cb = this.async();
 
     // have Yeoman greet the user.
     console.log(this.yeoman);
 
-    prompts = [{
-        'name': 'appName',
-        'message': 'What do you want to name your App?',
-        'default': 'dude'
-    },
-    {
-        type: 'checkbox',
-        name: 'platforms',
-        message: 'What platforms would you like to add support for?',
-        choices: getPlatformChoices()
-    },
-    {
-        type: 'checkbox',
-        name: 'plugins',
-        message: 'What plugins would you like to add support for?',
-        choices: getPluginsChoices()
-    }];
-
-    this.prompt(prompts, function (props) {
-        for (var key in props) {
-            this[key] = props[key];
-        }
-
-        this.platforms = '[\'' + this.platforms.toString().split(',').join('\', \'') + '\']';
-        if (this.plugins && this.plugins.length > 0) {
-            this.plugins = '[\'' + this.plugins.toString().split(',').join('\', \'') + '\']';
-        } else {
-            this.plugins = '[]';
-        }
+    promptName.call(this, promptPlatforms.bind(this, promptPlugins.bind(this, cb)));
 
 
-
-        cb();
-    }.bind(this));
 };
 
 CordovacliGenerator.prototype.app = function app() {
@@ -208,3 +178,66 @@ getPluginsChoices = function () {
 
     return choices;
 };
+
+
+promptName = function (cb) {
+    var prompts;
+    prompts = [{
+        'name': 'appName',
+        'message': 'What do you want to name your App-foo?',
+        'default': 'dude'
+    }];
+    this.prompt(prompts, function (props) {
+        for (var key in props) {
+            this[key] = props[key];
+        }
+        cb();
+    }.bind(this));
+
+};
+
+promptPlatforms = function (cb) {
+    var prompts;
+    prompts = [{
+        type: 'checkbox',
+        name: 'platforms',
+        message: 'What platforms would you like to add support for-foo?',
+        choices: getPlatformChoices()
+    }];
+    this.prompt(prompts, function (props) {
+        for (var key in props) {
+            this[key] = props[key];
+        }
+        if (!this.platforms || this.platforms.length <= 0) {
+            console.warn('Error Please select least one Platform');
+            return promptPlatforms.call(this, cb);
+        }
+        this.platforms = '[\'' + this.platforms.toString().split(',').join('\', \'') + '\']';
+        cb();
+    }.bind(this));
+
+};
+
+promptPlugins = function (cb) {
+    var prompts;
+    prompts = [{
+        type: 'checkbox',
+        name: 'plugins',
+        message: 'What plugins would you like to add support for-foo?',
+        choices: getPluginsChoices()
+    }];
+    this.prompt(prompts, function (props) {
+        for (var key in props) {
+            this[key] = props[key];
+        }
+        if (this.plugins && this.plugins.length > 0) {
+            this.plugins = '[\'' + this.plugins.toString().split(',').join('\', \'') + '\']';
+        } else {
+            this.plugins = '[]';
+        }
+        cb();
+    }.bind(this));
+};
+
+
+
