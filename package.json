@@ -1,6 +1,6 @@
 {
   "name": "generator-cordovacli",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "A generator for Apache Cordova CLI 3.x coming soon...",
   "keywords": [
     "yeoman-generator"
@@ -35,7 +35,8 @@
   },
   "licenses": [
     {
-      "type": "MIT"
+      "type": "Apache-2.0",
+      "url": "https://github.com/csantanapr/generator-cordovacli/blob/master/LICENSE-Apache-2.0"
     }
   ]
 }

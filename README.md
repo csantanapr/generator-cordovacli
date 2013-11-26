@@ -67,4 +67,4 @@ If you'd like to get to know Yeoman better and meet some of his friends, [Grunt]
 
 ## License
 
-[MIT License](http://en.wikipedia.org/wiki/MIT_License)
+[Apache-2.0](./LICENSE-Apache-2.0)
