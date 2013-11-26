@@ -1,6 +1,6 @@
 # generator-cordovacli [![Build Status](https://secure.travis-ci.org/csantanapr/generator-cordovacli.png?branch=master)](https://travis-ci.org/csantanapr/generator-cordovacli)
 
-A generator for Apache Cordova CLI 3.x coming soon...
+A generator for Apache Cordova CLI 3.x
 
 
 ## Getting Started
@@ -33,6 +33,17 @@ Finally, initiate the generator:
 
 ```
 $ yo cordovacli
+```
+
+### Then what?
+Run  `grunt --help` to see available tasks
+
+Here are a few options:
+```
+$ grunt build
+$ grunt server
+$ grunt emulate
+$ grunt demo
 ```
 
 ### Getting To Know Yeoman
