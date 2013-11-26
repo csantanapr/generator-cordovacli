@@ -41,10 +41,22 @@ Run  `grunt --help` to see available tasks
 Here are a few options:
 ```
 $ grunt build
-$ grunt server
+$ grunt server (build, emulate, watch)
 $ grunt emulate
 $ grunt demo
 ```
+
+Platforms Supported:
+Android (Linux, OSX, Windows)
+iOS (OSX)
+BlackBerry 10 (OSX, Windows)
+Windows Phone 8 (Windows)
+Windows 8 (Windows)
+
+Plugins Supported:
+Apache Cordova Core Plugins
+Additional plugins can be added by editing the grunt-cordovacli task in the Grunfile.js
+
 
 ### Getting To Know Yeoman
 
