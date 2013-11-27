@@ -12,7 +12,9 @@ var CordovacliGenerator,
     getPluginsChoices,
     promptName,
     promptPlatforms,
-    promptPlugins;
+    promptPlugins,
+    promptPackageId;
+
 CordovacliGenerator = module.exports = function CordovacliGenerator(args, options) {
     yeoman.generators.Base.apply(this, arguments);
 
@@ -51,7 +53,11 @@ CordovacliGenerator.prototype.askFor = function askFor() {
     // have Yeoman greet the user.
     console.log(this.yeoman);
 
-    promptName.call(this, promptPlatforms.bind(this, promptPlugins.bind(this, cb)));
+    promptName.call(this,
+        promptPackageId.bind(this,
+        promptPlatforms.bind(this,
+        promptPlugins.bind(this, cb)
+    )));
 
 
 };
@@ -157,7 +163,7 @@ getPluginsChoices = function () {
     },
     {
         name: 'Geolocation',
-        value: 'geolacation',
+        value: 'geolocation',
         checked: false
     },
     {
@@ -215,6 +221,20 @@ promptName = function (cb) {
         cb();
     }.bind(this));
 
+};
+promptPackageId = function (cb) {
+    var prompts;
+    prompts = [{
+        'name': 'appId',
+        'message': 'What do you want to name your Package ID?',
+        'default': 'io.cordova.hellocordova'
+    }];
+    this.prompt(prompts, function (props) {
+        for (var key in props) {
+            this[key] = props[key];
+        }
+        cb();
+    }.bind(this));
 };
 
 promptPlatforms = function (cb) {

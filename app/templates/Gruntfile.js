@@ -37,7 +37,7 @@ module.exports = function (grunt) {
                     command: ['create', 'platform', 'plugin'],
                     platforms: <%= platforms %>,
                     plugins:  <%= plugins %>,
-                    id: 'io.cordova.hellocordova',
+                    id: '<%= appId %>',
                     name: '<%= _.slugify(appName) %>'
                 }
             },
