@@ -28,6 +28,7 @@ describe('cordovacli generator', function () {
 
     helpers.mockPrompt(this.app, {
       'appName': 'dude',
+      'appId': 'io.dude',
       'platforms': ['android'],
       'plugins' : ['device']
     });
