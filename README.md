@@ -19,6 +19,15 @@ Not every new computer comes with a Yeoman pre-installed. He lives in the [npm](
 $ npm install -g yo
 ```
 
+If npm is down, you are npm help @ [scalenpm.org](https://scalenpm.org)
+
+To install from repo use git url
+
+```
+$ npm install -g git+https://github.com/yeoman/yo.git
+```
+
+
 ### Yeoman Generators
 
 Yeoman travels light. He didn't pack any generators when he moved in. You can think of a generator like a plug-in. You get to choose what type of application you wish to create, such as a Backbone application or even a Chrome extension.
@@ -28,6 +37,15 @@ To install generator-cordovacli from npm, run:
 ```
 $ npm install -g generator-cordovacli
 ```
+
+If npm is down, you are npm help @ [scalenpm.org](https://scalenpm.org)
+
+To install from repo use git url
+
+```
+$ npm install -g git+https://github.com/csantanapr/generator-cordovacli.git
+```
+
 
 Finally, initiate the generator:
 
