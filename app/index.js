@@ -51,7 +51,7 @@ CordovacliGenerator.prototype.askFor = function askFor() {
     var cb = this.async();
 
     // have Yeoman greet the user.
-    console.log(this.yeoman);
+    //console.log(this.yeoman);
 
     promptName.call(this,
         promptPackageId.bind(this,
