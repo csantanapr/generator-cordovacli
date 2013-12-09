@@ -21,6 +21,7 @@ CordovacliGenerator = module.exports = function CordovacliGenerator(args, option
     this.on('end', function () {
 
         this.installDependencies({
+            bower: false,
             skipInstall: options['skip-install'],
             callback: function () {
                 var child;
@@ -64,7 +65,6 @@ CordovacliGenerator.prototype.askFor = function askFor() {
 
 CordovacliGenerator.prototype.app = function app() {
     this.copy('_package.json', 'package.json');
-    this.copy('_bower.json', 'bower.json');
 };
 
 CordovacliGenerator.prototype.projectfiles = function projectfiles() {

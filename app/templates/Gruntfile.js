@@ -51,6 +51,11 @@ module.exports = function (grunt) {
                     command: 'emulate'
                 }
             },
+            run: {
+                options: {
+                    command: 'run'
+                }
+            },
             prepare: {
                 options: {
                     command: 'prepare'
@@ -77,10 +82,9 @@ module.exports = function (grunt) {
     grunt.registerTask('default', ['build']);
     grunt.registerTask('lint',    ['jshint']);
     grunt.registerTask('server',  ['build', 'emulate', 'watch:cordova']);
-    grunt.registerTask('emulate', ['cordovacli:emulate']);
-    grunt.registerTask('demo',    ['build', 'emulate']);
 
-    grunt.registerTask('build',   ['lint', 'cordovacli:build']);
+
+
 
     grunt.task.registerTask('build', 'Builds a Cordova App', function () {
         var check;
@@ -99,5 +103,8 @@ module.exports = function (grunt) {
 
     grunt.registerTask('prepare', ['cordovacli:prepare']);
     grunt.registerTask('compile', ['cordovacli:compile']);
+    grunt.registerTask('emulate', ['cordovacli:emulate']);
+    grunt.registerTask('run',     ['cordovacli:run']);
+    grunt.registerTask('demo',    ['build', 'emulate']);
 
 };
